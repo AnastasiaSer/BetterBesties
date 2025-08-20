@@ -27,22 +27,9 @@ header {
 .calendar {
 	display: grid;
 	grid-template-columns: repeat(7, 1fr);
-	gap: 10px;
-	max-width: 800px;
+	gap: 15px;
+	max-width: 600px;
 	margin: 2rem auto;
-}
-
-.calendar div {
-	background: #e6d1ec;
-	border-radius: 50%;
-	width: 60px;
-	height: 60px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: bold;
-	cursor: pointer;
-	transition: 0.2s;
 }
 
 .calendar div:hover {
@@ -55,21 +42,57 @@ header {
 	overflow: hidden;
 }
 
-.calendar .highlight::after {
-	content: "";
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 50%;
-	height: 100%;
-	background: #fff78a;
-	border-radius: 50px 0 0 50px;
-	z-index: 1;
-}
-
 .calendar .highlight span {
 	position: relative;
 	z-index: 2;
+}
+
+
+.calendar .day-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.calendar div {
+  background: #e6d1ec;
+  /* border-radius: 50%; */
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.bars-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+}
+
+.bar {
+    position: absolute;
+    width: 50% !important;
+    height: 33% !important;
+    left: 0px;
+}
+
+.bar.fitness { 
+    background-color: #84bce4; 
+    top: 0px;
+}
+
+.bar.food { 
+    background-color: #daa768; 
+}
+
+.bar.selfcare { 
+    background-color: #88d188; 
+    bottom: 0px;
 }
 
 .nav {
