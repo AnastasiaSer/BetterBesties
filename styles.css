@@ -44,7 +44,7 @@ header {
 
 .calendar .highlight span {
 	position: relative;
-	z-index: 2;
+	z-index: 3;
 }
 
 
@@ -79,19 +79,20 @@ header {
     width: 50% !important;
     height: 33% !important;
     left: 0px;
+    z-index: 2;
 }
 
-.bar.fitness { 
-    background-color: #84bce4; 
+.fitness { 
+    background-color: #84bce4 !important; 
     top: 0px;
 }
 
-.bar.food { 
-    background-color: #daa768; 
+.food { 
+    background-color: #daa768 !important; 
 }
 
-.bar.selfcare { 
-    background-color: #88d188; 
+.selfcare { 
+    background-color: #88d188 !important; 
     bottom: 0px;
 }
 

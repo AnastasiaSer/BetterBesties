@@ -37,7 +37,8 @@ function renderCalendar() {
     calendar.innerHTML = "";
 
     const year = currentDate.getFullYear();
-    const month = currentDate.getMonth();
+    const month = currentDate.getMonth(); // 0-based
+    const displayMonth = month + 1; // 1-based for keys
 
     monthYear.textContent = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
 
@@ -50,39 +51,36 @@ function renderCalendar() {
     }
 
     for (let day = 1; day <= daysInMonth; day++) {
-    const wrapper = document.createElement('div');
-    wrapper.classList.add('day-wrapper');
+        const wrapper = document.createElement('div');
+        wrapper.classList.add('day-wrapper');
 
-    const div = document.createElement('div'); // the actual day circle
-    const key = `${year}-${month}-${day}`;
+        const div = document.createElement('div'); // the actual day circle
+        const key = `${year}-${displayMonth}-${day}`;
 
-    div.innerHTML = `<span>${day}</span>`;
+        div.innerHTML = `<span>${day}</span>`;
 
-    if (completedDays[key]) {
-        div.classList.add('highlight');
+        if (completedDays[key]) {
+            div.classList.add('highlight');
 
-        const barsContainer = document.createElement('div');
-        barsContainer.classList.add('bars-container');
+            const barsContainer = document.createElement('div');
+            barsContainer.classList.add('bars-container');
 
-        ["fitness", "food", "selfcare"].forEach(cat => {
-            if (completedDays[key][cat]) {
-                const bar = document.createElement('div');
-                bar.classList.add('bar', cat);
-                barsContainer.appendChild(bar);
-            }
-        });
+            ["fitness", "food", "selfcare"].forEach(cat => {
+                if (completedDays[key][cat]) {
+                    const bar = document.createElement('div');
+                    bar.classList.add('bar', cat);
+                    barsContainer.appendChild(bar);
+                }
+            });
 
-        div.appendChild(barsContainer);
+            div.appendChild(barsContainer);
+        }
+
+        div.onclick = () => openDay(key);
+        wrapper.appendChild(div);
+        calendar.appendChild(wrapper);
     }
-
-    div.onclick = () => openDay(key);
-    wrapper.appendChild(div);
-    calendar.appendChild(wrapper);
 }
-
-}
-
-
 
 function changeMonth(delta) {
     currentDate.setMonth(currentDate.getMonth() + delta);
@@ -120,9 +118,7 @@ function openDay(key) {
 
         item.appendChild(content);
 
-        header.onclick = () => {
-            content.classList.toggle("active");
-        };
+        header.onclick = () => content.classList.toggle("active");
 
         accordion.appendChild(item);
     });
