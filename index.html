@@ -9,7 +9,6 @@
 <body>
 	<header>BetterBesties</header>
 
-	<!-- Calendar Page -->
 	<div id="calendarPage">
 		<div class="nav">
 			<button onclick="changeMonth(-1)">Prev</button>
@@ -19,18 +18,13 @@
 		<div class="calendar" id="calendar"></div>
 	</div>
 
-	<!-- Day Page (hidden by default) -->
 	<div id="dayPage" class="hidden">
 		<div class="day-controls">
 			<button onclick="backToCalendar()">← Back to Calendar</button>
 		</div>
 
 		<h2 id="dayTitle"></h2>
-
-		<!-- Accordion will be injected here -->
 		<div id="accordion"></div>
-
-		<!-- Confirm button at bottom -->
 		<div class="confirm-container">
 			<button onclick="confirmDay()">Confirm Tasks</button>
 		</div>

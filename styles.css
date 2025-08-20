@@ -46,11 +46,11 @@ header {
 	position: relative;
 	z-index: 3;
 }
-
+/* 
 .calendar .day-wrapper {
   position: relative;
   display: inline-block;
-}
+} */
 
 .calendar div {
   background: #e6d1ec;

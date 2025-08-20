@@ -37,8 +37,8 @@ function renderCalendar() {
     calendar.innerHTML = "";
 
     const year = currentDate.getFullYear();
-    const month = currentDate.getMonth(); // 0-based
-    const displayMonth = month + 1; // 1-based for keys
+    const month = currentDate.getMonth(); 
+    const displayMonth = month + 1; 
 
     monthYear.textContent = currentDate.toLocaleString('default', { month: 'long', year: 'numeric' });
 
@@ -54,26 +54,50 @@ function renderCalendar() {
         const wrapper = document.createElement('div');
         wrapper.classList.add('day-wrapper');
 
-        const div = document.createElement('div'); // the actual day circle
+        const div = document.createElement('div'); 
         const key = `${year}-${displayMonth}-${day}`;
+        let barsContainer = document.createElement('div');
+        let bar = document.createElement('div');
+        let bar2 = document.createElement('div');
+        let bar3 = document.createElement('div');
+        bar.classList.add("bar");
+        bar2.classList.add("bar");
+        bar3.classList.add("bar");
 
+        barsContainer.classList.add('bars-container');
+        
         div.innerHTML = `<span>${day}</span>`;
-
+        
         if (completedDays[key]) {
             div.classList.add('highlight');
 
-            const barsContainer = document.createElement('div');
-            barsContainer.classList.add('bars-container');
+            console.log("Completed days: " , completedDays);
 
             ["fitness", "food", "selfcare"].forEach(cat => {
                 if (completedDays[key][cat]) {
-                    const bar = document.createElement('div');
-                    bar.classList.add('bar', cat);
+                    switch(cat) {
+                        case "fitness":
+                            bar.classList.add("fitness");
+                            break;
+                        case "food":
+                            bar2.classList.add("food")
+                            break;
+                        case "selfcare":
+                            bar3.classList.add("selfcare")
+                            break;
+                        default:
+                    }
+                    console.log("cat: "+ cat);
+                    console.log("key: "+ key);
+                    
                     barsContainer.appendChild(bar);
+                    barsContainer.appendChild(bar2);
+                    barsContainer.appendChild(bar3);
                 }
             });
 
             div.appendChild(barsContainer);
+            console.log(barsContainer);
         }
 
         div.onclick = () => openDay(key);
@@ -140,12 +164,16 @@ function confirmDay() {
         const catDiv = items.find(c => c.querySelector(".accordion-header").textContent.toLowerCase() === cat);
         if (catDiv) {
             const checked = catDiv.querySelectorAll(".task-item.checked").length > 0;
-            completedDays[selectedDay][cat] = checked;
+            
+            // Only update to true if tasks are checked
+            if (checked) {
+                completedDays[selectedDay][cat] = true;
+            }
         }
     });
 
     backToCalendar();
 }
 
-// Initialise calendar
+
 renderCalendar();
