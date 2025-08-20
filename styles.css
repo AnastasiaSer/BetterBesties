@@ -4,6 +4,7 @@ body {
 	background: linear-gradient(to right, #f3b1f5, #d8b6ff);
 	color: #4a2b4a;
 	text-align: center;
+    padding: 20px;
 }
 
 header {
@@ -19,17 +20,16 @@ header {
 	display: none !important;
 }
 
-/* Calendar */
 #calendarPage {
 	margin-top: 5vh;
 }
 
 .calendar {
 	display: grid;
-	grid-template-columns: repeat(7, 1fr);
-	gap: 15px;
-	max-width: 600px;
-	margin: 2rem auto;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 15px;
+    max-width: 500px;
+    margin: 3rem auto;
 }
 
 .calendar div:hover {
@@ -46,7 +46,6 @@ header {
 	position: relative;
 	z-index: 3;
 }
-
 
 .calendar .day-wrapper {
   position: relative;
@@ -187,6 +186,18 @@ header {
 	display: flex;
 	justify-content: center;
 }
+
+button {
+    padding: 0.7rem 1.3rem;
+	font-size: 0.7rem;
+	background: #7a56a3;
+	border: none;
+	border-radius: 12px;
+	color: #ffffff;
+	cursor: pointer;
+	font-weight: bold;
+}
+
 
 .confirm-container button {
 	padding: 1rem 2rem;
