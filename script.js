@@ -60,9 +60,6 @@ function renderCalendar() {
         let bar = document.createElement('div');
         let bar2 = document.createElement('div');
         let bar3 = document.createElement('div');
-        bar.classList.add("bar");
-        bar2.classList.add("bar");
-        bar3.classList.add("bar");
 
         barsContainer.classList.add('bars-container');
         
@@ -77,12 +74,15 @@ function renderCalendar() {
                 if (completedDays[key][cat]) {
                     switch(cat) {
                         case "fitness":
+                            bar.classList.add("bar");
                             bar.classList.add("fitness");
                             break;
                         case "food":
+                            bar2.classList.add("bar");
                             bar2.classList.add("food")
                             break;
                         case "selfcare":
+                            bar3.classList.add("bar");
                             bar3.classList.add("selfcare")
                             break;
                         default:
@@ -164,7 +164,7 @@ function confirmDay() {
         const catDiv = items.find(c => c.querySelector(".accordion-header").textContent.toLowerCase() === cat);
         if (catDiv) {
             const checked = catDiv.querySelectorAll(".task-item.checked").length > 0;
-            
+
             // Only update to true if tasks are checked
             if (checked) {
                 completedDays[selectedDay][cat] = true;
